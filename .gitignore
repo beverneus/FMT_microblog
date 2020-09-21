@@ -1,4 +1,4 @@
-__pycache__
+__pycache__/
 .gitignore
+app.db
 Pipfile
-Pipfile.lock
