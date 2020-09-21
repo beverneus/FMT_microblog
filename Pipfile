@@ -10,6 +10,6 @@ flask = "*"
 python-dotenv = "*"
 flask-wtf = "*"
 gunicorn = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 
-[requires]
-python_version = "3.8"
