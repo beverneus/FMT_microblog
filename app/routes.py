@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for, request
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, WelcomeForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
 from werkzeug.urls import url_parse
@@ -63,3 +63,18 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('index'))
     return render_template('register.html', title='Register', form=form)
+
+
+@app.route('/settings', methods=['GET', 'POST'])
+def settings():
+    if current_user.is_anonymous:
+        return redirect(url_for('login'))
+    form = WelcomeForm()
+    print(form.validate_on_submit())
+    if form.validate_on_submit():
+        user = User.query.filter_by(id=current_user.get_id()).first()
+        user.welcome = form.welcome.data
+        db.session.commit()
+        flash('Your settings are saved')
+        return redirect(url_for('index'))
+    return render_template('settings.html', title='Settings', form=form)
