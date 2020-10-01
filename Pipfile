@@ -12,4 +12,5 @@ flask-wtf = "*"
 gunicorn = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
-
+flask-login = "*"
+email-validator = "*"
